@@ -1,5 +1,10 @@
 #!/bin/bash
 #=================================================
+
+# minieap
+git clone https://github.com/KumaTea/openwrt-minieap.git package/minieap
+git clone https://github.com/ysc3839/luci-proto-minieap.git package/luci-proto-minieap
+
 shopt -s extglob
 kernel_v="$(cat include/kernel-5.10 | grep LINUX_KERNEL_HASH-* | cut -f 2 -d - | cut -f 1 -d ' ')"
 echo "KERNEL=${kernel_v}" >> $GITHUB_ENV || true

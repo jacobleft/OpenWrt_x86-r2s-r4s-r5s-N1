@@ -217,3 +217,19 @@
  	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x10000" "0x20000"
  	;;
  esac
+
+--- a/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
++++ b/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
+@@ -75,6 +75,12 @@ ramips_setup_interfaces()
+ 	mikrotik,routerboard-760igs)
+ 		ucidef_set_interfaces_lan_wan "lan2 lan3 lan4 lan5" "wan sfp"
+ 		;;
++	jcg,y2|\
++	phicomm,k2p|\
++	xiaoyu,xy-c5)
++		ucidef_add_switch "switch0" \
++			"0:lan" "1:lan" "2:lan" "3:lan" "4:wan" "6u@eth0" "5u@eth1"
++		;;
+ 	tplink,eap235-wall-v1|\
+ 	tplink,eap615-wall-v1)
+ 		ucidef_set_interface_lan "lan0 lan1 lan2 lan3"

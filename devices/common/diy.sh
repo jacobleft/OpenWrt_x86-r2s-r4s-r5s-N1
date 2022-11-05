@@ -7,7 +7,7 @@ sed -i "s?targets/%S/packages?targets/%S/$kernel_v?" include/feeds.mk
 
 echo "$(date +"%s")" >version.date
 sed -i '/$(curdir)\/compile:/c\$(curdir)/compile: package/opkg/host/compile' package/Makefile
-sed -i "s/DEFAULT_PACKAGES:=/DEFAULT_PACKAGES:=luci-app-advanced luci-app-firewall luci-app-gpsysupgrade luci-app-opkg luci-app-upnp luci-app-autoreboot \
+sed -i "s/DEFAULT_PACKAGES:=/DEFAULT_PACKAGES:=luci-app-advanced luci-app-firewall luci-app-gpsysupgrade luci-app-opkg luci-app-autoreboot \
 luci-app-wizard luci-base luci-compat luci-lib-ipkg luci-lib-fs \
 coremark wget-ssl curl htop nano zram-swap kmod-lib-zstd kmod-tcp-bbr bash openssh-sftp-server block-mount resolveip kmod-ip6-tunnel ds-lite /" include/target.mk
 sed -i "s/procd-ujail//" include/target.mk
@@ -32,7 +32,7 @@ rm -rf feeds/kiddin9/.diy
 
 mv -f feeds/kiddin9/{r81*,igb-intel} tmp/
 
-sed -i "s/192.168.1/10.0.0/" package/feeds/kiddin9/base-files/files/bin/config_generate
+sed -i "s/192.168.1/192.168.10/" package/feeds/kiddin9/base-files/files/bin/config_generate
 
 (
 svn export --force https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
@@ -90,3 +90,6 @@ if [ -f sdk.tar.xz ]; then
 	ln -sf /usr/bin/python3 staging_dir/host/bin/python3
 fi
 ) &
+
+# minieap
+git clone https://github.com/KumaTea/openwrt-minieap.git package/minieap
